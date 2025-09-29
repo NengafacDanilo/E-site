@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - ESHOP</title>
+    <!-- Using a common Google Font and Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #E91E63;
+            --primary-green: #4CAF50;
+            --primary-yellow: #FFC107;
+            --dark-bg: #212121;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 20px 0;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+
+        #Features {
+            display: flex;
+        }
+
+        #Features li {
+            margin: 0 1rem;
+            list-style: none;
+        }
+
+        #Featuresli a {
+            display: inline-flex;
+            font-weight: 600;
+        }
+
+        /* .navlist li a.active {
+    background: var(--primary-red);
+    color: transparent;
+} */
+
+.whatsapp-icon {
+    font-size: 24px;
+    color: var(--primary-green);
+    margin-left: 15px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+    color: #25D366;
+    background-color: #e0e0e0;
+}
+
+        /* Blog Section */
+        .blog-section {
+            padding: 60px 0;
+        }
+
+        .blog-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .blog-title p {
+            color: #777;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            /* Placeholder for image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .blog-content {
+            padding: 15px;
+        }
+
+        .blog-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-red);
+        }
+
+        .blog-content p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .blog-content a {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--primary-red);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-red);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .footer-col .social-icons a {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            color: #555;
+        }
+
+        .footer-col .social-icons a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col .visit-btn {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+
+        .footer-col .made-with {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ESHOP</div>
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-menu">
+                    <ul id="Features">
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="https://wa.me/+1234567890" target="_blank" class="whatsapp-icon"><i class="fab fa-whatsapp"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 1. Blog Section -->
+    <section class="blog-section">
+        <div class="container blog-title">
+            <h1>Latest Articles</h1>
+            <p>Stay updated with the latest trends and insights in technology.</p>
+        </div>
+        <div class="container blog-grid">
+
+            <!-- Blog Card 1 -->
+            <div class="blog-card">
+                <div class="blog-image">Image Placeholder</div>
+                <div class="blog-content">
+                    <h3>How to Choose the Right Headphones</h3>
+                    <p>Discover key factors to consider when selecting the perfect headphones for your needs.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 2 -->
+            <div class="blog-card">
+                <div class="blog-image">Image Placeholder</div>
+                <div class="blog-content">
+                    <h3>The Rise of Smartwatches</h3>
+                    <p>Explore how smartwatches are changing the way we interact with technology.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 3 -->
+            <div class="blog-card">
+                <div class="blog-image">Image Placeholder</div>
+                <div class="blog-content">
+                    <h3>Virtual Reality: The Future of Gaming</h3>
+                    <p>Uncover the potential of virtual reality in transforming the gaming experience.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 4 -->
+            <div class="blog-card">
+                <div class="blog-image">Image Placeholder</div>
+                <div class="blog-content">
+                    <h3>Top 10 Gadgets of 2024</h3>
+                    <p>Check out the most innovative gadgets hitting the market this year.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 5 -->
+            <div class="blog-card">
+                <div class="blog-image">Image Placeholder</div>
+                <div class="blog-content">
+                    <h3>Tech Tips for Remote Work</h3>
+                    <p>Enhance your productivity with these essential tech tools for remote work.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+
+            <!-- Blog Card 6 -->
+            <div class="blog-card">
+                <div class="blog-image">Image Placeholder</div>
+                <div class="blog-content">
+                    <h3>Understanding AI in Everyday Life</h3>
+                    <p>Learn how artificial intelligence is increasingly becoming part of our daily routines.</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. Footer -->
+    <footer>
+        <div class="container footer-grid">
+
+            <div class="footer-col">
+                <h4>ESHOP</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maiores alias cum.</p>
+                <p class="made-with">Made with <i class="fas fa-heart" style="color: var(--primary-red);"></i> by The
+                    Coding Journey</p>
+                <a href="#" class="visit-btn">Visit our YouTube Channel</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Important Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Address</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Noida, Uttar Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 1234567890</p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

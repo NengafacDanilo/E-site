@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - ESHOP</title>
+    <!-- Using a common Google Font and Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #E91E63;
+            --primary-green: #4CAF50;
+            --primary-yellow: #FFC107;
+            --dark-bg: #212121;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation Styles */
+        header {
+            padding: 20px 0;
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            z-index: 1001;
+        }
+
+        #Features {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #Features li {
+            margin: 0 1rem;
+            list-style: none;
+            position: relative;
+        }
+
+        /* Cart Styles */
+        .cart-section {
+            padding: 2rem 0;
+            min-height: 70vh;
+        }
+
+        .cart-title {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .cart-empty i {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: auto 2fr 1fr 1fr 1fr auto;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--primary-red);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-controls button {
+            background: var(--light-gray);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .quantity-controls button:hover {
+            background: var(--dark-bg);
+            color: var(--white);
+        }
+
+        .quantity-controls span {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-item-total {
+            font-weight: 600;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .remove-item:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-summary {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #ddd;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background: #d81b60;
+        }
+
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .continue-shopping:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                grid-template-columns: auto 1fr auto;
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+
+            .cart-item-price,
+            .cart-item-total {
+                font-size: 0.9rem;
+            }
+
+            .quantity-controls button {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        #Features li a {
+            display: inline-flex;
+            font-weight: 600;
+            align-items: center;
+            padding: 0.5rem;
+            transition: var(--transition);
+        }
+
+        #Features li a:hover {
+            color: var(--primary-red);
+        }
+
+        #Features li:last-child {
+            margin-left: auto;
+        }
+
+        #bar {
+            display: none;
+            cursor: pointer;
+        }
+
+        #close {
+            display: none;
+            cursor: pointer;
+        }
+
+        .whatsapp-icon {
+            font-size: 24px;
+            color: var(--primary-green);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+            color: #25D366;
+            background-color: #e0e0e0;
+        }
+
+        .active {
+            color: var(--primary-red);
+        }
+
+        /* Mobile Navigation Styles */
+        @media screen and (max-width: 768px) {
+            #navbar {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                position: fixed;
+                top: 0;
+                right: -300px;
+                height: 100vh;
+                width: 300px;
+                background-color: #fff;
+                box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+                padding: 80px 0 0 10px;
+                transition: 0.3s;
+            }
+
+            #navbar.active {
+                right: 0px;
+            }
+
+            #navbar #Features {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #Features li {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+
+            #Features li a {
+                width: 100%;
+                padding: 0.8rem 0;
+            }
+
+            #Features li:last-child {
+                margin-left: 0;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--light-gray);
+            }
+
+            .whatsapp-icon {
+                margin-left: 0;
+                justify-content: flex-start;
+            }
+
+            #close {
+                display: initial;
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                color: #222;
+                font-size: 24px;
+            }
+
+            #bar {
+                display: initial;
+                color: #222;
+                font-size: 24px;
+            }
+        }
+
+        /* Utility Classes */
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--white);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-primary:hover {
+            background-color: #d81b60;
+        }
+
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 20px 0;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+
+        #Features {
+            display: flex;
+        }
+
+        #Features li {
+            margin: 0 1rem;
+            list-style: none;
+        }
+
+        #Featuresli a {
+            display: inline-flex;
+            font-weight: 600;
+        }
+
+        /* .navlist li a.active {
+    background: var(--primary-red);
+    color: transparent;
+} */
+
+.whatsapp-icon {
+    font-size: 24px;
+    color: var(--primary-green);
+    margin-left: 15px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+    color: #25D366;
+    background-color: #e0e0e0;
+}
+
+        /* Jumbotron */
+        .jumbotron {
+            background: linear-gradient(135deg, var(--primary-red), #ff6f9c);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .jumbotron h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        /* Cart Item Section */
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            max-width: 150px;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+
+        .cart-item h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .cart-item p {
+            color: #777;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .quantity label {
+            margin-right: 10px;
+        }
+
+        .quantity input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        /* Checkout Section */
+        .checkout-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .checkout-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-red);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .footer-col .social-icons a {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            color: #555;
+        }
+
+        .footer-col .social-icons a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col .visit-btn {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+
+        .footer-col .made-with {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-item img {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .jumbotron h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ESHOP</div>
+                <i class="fas fa-bars" id="bar"></i>
+                <div class="nav-menu" id="navbar">
+                    <ul id="Features">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li>
+                            <a href="add-to-card.html" class="active" style="display: flex; align-items: center; gap: 5px;">
+                                Cart
+                                <span class="cart-count" style="background: #E91E63; color: white; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">0</span>
+                            </a>
+                        </li>
+                        <li><a href="https://wa.me/+1234567890" target="_blank" class="whatsapp-icon" aria-label="Chat on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a></li>
+                    </ul>
+                    <i class="fas fa-times" id="close"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 1. JUMBOTRON -->
+    <section class="jumbotron">
+        <div class="container">
+            <h1>Your Cart</h1>
+            <p>Review your selected items and proceed to checkout.</p>
+        </div>
+    </section>
+
+    <!-- Cart Items Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div id="cartItemsContainer">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+
+            <div class="total-price" id="totalPrice">
+                Total: $0.00
+            </div>
+
+            <div id="emptyCartMessage" style="text-align: center; padding: 40px; display: none;">
+                <i class="fas fa-shopping-cart" style="font-size: 48px; color: #ccc; margin-bottom: 20px;"></i>
+                <h2>Your cart is empty</h2>
+                <p>Browse our products and add some items to your cart!</p>
+                <a href="index.html" class="btn btn-primary" style="display: inline-block; margin-top: 20px;">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section" id="checkoutSection" style="display: none;">
+        <div class="container">
+            <h2>Ready to Checkout?</h2>
+            <a href="#" class="btn btn-primary" onclick="proceedToCheckout()">Proceed to Checkout</a>
+        </div>
+    </section>
+
+    <script>
+        // Function to load cart items from localStorage
+        function loadCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartContainer = document.getElementById('cartItemsContainer');
+            const emptyCartMessage = document.getElementById('emptyCartMessage');
+            const checkoutSection = document.getElementById('checkoutSection');
+            const totalPriceElement = document.getElementById('totalPrice');
+            
+            // Clear current cart display
+            cartContainer.innerHTML = '';
+            
+            if (cartItems.length === 0) {
+                // Show empty cart message
+                emptyCartMessage.style.display = 'block';
+                checkoutSection.style.display = 'none';
+                totalPriceElement.style.display = 'none';
+                return;
+            }
+
+            // Hide empty cart message and show checkout section
+            emptyCartMessage.style.display = 'none';
+            checkoutSection.style.display = 'block';
+            totalPriceElement.style.display = 'block';
+
+            // Calculate total
+            let total = 0;
+
+            // Create cart items
+            cartItems.forEach((item, index) => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <div class="cart-item-image" style="width: 150px; height: 150px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+                    </div>
+                    <div class="cart-item-details">
+                        <h2>${item.name}</h2>
+                        <p>Category: ${item.category}</p>
+                        <p>Price: $${item.price.toFixed(2)}</p>
+                    </div>
+                    <div class="quantity">
+                        <button onclick="updateQuantity(${index}, -1)" class="quantity-btn">-</button>
+                        <span class="quantity-num">${item.quantity}</span>
+                        <button onclick="updateQuantity(${index}, 1)" class="quantity-btn">+</button>
+                    </div>
+                    <button onclick="removeItem(${index})" class="remove-btn">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                cartContainer.appendChild(cartItemElement);
+
+                total += item.price * item.quantity;
+            });
+
+            // Update total price
+            totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Function to update item quantity
+        function updateQuantity(index, change) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            if (cartItems[index]) {
+                cartItems[index].quantity = Math.max(1, cartItems[index].quantity + change);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                loadCartItems();
+                updateCartCount();
+            }
+        }
+
+        // Function to remove item from cart
+        function removeItem(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            if (cartItems[index]) {
+                cartItems.splice(index, 1);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                loadCartItems();
+                updateCartCount();
+            }
+        }
+
+        // Function to update cart count
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountSpan = document.querySelector('.cart-count');
+            if (cartCountSpan) {
+                cartCountSpan.textContent = totalItems;
+            }
+        }
+
+        // Function to handle checkout
+        function proceedToCheckout() {
+            // Add your checkout logic here
+            alert('Proceeding to checkout...');
+        }
+
+        // Load cart items when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartItems();
+            updateCartCount();
+        });
+    </script>
+
+    <style>
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .cart-item-details {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background-color: #f0f0f0;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quantity-num {
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #E91E63;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .remove-btn:hover {
+            color: #c2185b;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: right;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-item-details {
+                padding: 20px 0;
+            }
+
+            .quantity {
+                margin: 20px 0;
+            }
+        }
+    </style>
+
+    <!-- 4. Footer -->
+    <footer>
+        <div class="container footer-grid">
+
+            <div class="footer-col">
+                <h4>ESHOP</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maiores alias cum.</p>
+                <p class="made-with">Made with <i class="fas fa-heart" style="color: var(--primary-red);"></i> by The
+                    Coding Journey</p>
+                <a href="#" class="visit-btn">Visit our YouTube Channel</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Important Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Address</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Noida, Uttar Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 1234567890</p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/app.js"></script>
+    <script src="/cart.js"></script>
+    <script>
+        const bar = document.getElementById('bar');
+        const close = document.getElementById('close');
+        const nav = document.getElementById('navbar');
+
+        if (bar) {
+            bar.addEventListener('click', () => {
+                nav.classList.add('active');
+            })
+        }
+
+        if (close) {
+            close.addEventListener('click', () => {
+                nav.classList.remove('active');
+            })
+        }
+    </script>
+</body>
+
+</html>

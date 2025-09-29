@@ -1,0 +1,373 @@
+ :root {
+     --primary-red: #E91E63;
+     --primary-green: #4CAF50;
+     --primary-yellow: #FFC107;
+     --dark-bg: #212121;
+     --light-gray: #f4f4f4;
+     --text-color: #333;
+     --white: #ffffff;
+     --transition: all 0.3s ease;
+ }
+
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
+
+ body {
+     font-family: 'Poppins', sans-serif;
+     line-height: 1.6;
+     color: var(--text-color);
+     background-color: var(--white);
+ }
+
+ a {
+     text-decoration: none;
+     color: inherit;
+ }
+
+ .container {
+     width: 90%;
+     max-width: 1200px;
+     margin: 0 auto;
+ }
+
+ /* Utility Classes */
+ .btn {
+     display: inline-block;
+     padding: 10px 25px;
+     border-radius: 5px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: var(--transition);
+     text-transform: uppercase;
+     font-size: 0.9rem;
+ }
+
+ .btn-primary {
+     background-color: var(--primary-red);
+     color: var(--white);
+     border: 2px solid var(--primary-red);
+ }
+
+ .btn-primary:hover {
+     background-color: #d81b60;
+ }
+
+ .section-padding {
+     padding: 60px 0;
+ }
+
+ .text-center {
+     text-align: center;
+ }
+
+ /* ==================================
+           HEADER / NAVIGATION
+           ================================== */
+ header {
+     padding: 20px 0;
+     background-color: var(--white);
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+ }
+
+ nav {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .logo {
+     font-size: 1.5rem;
+     font-weight: 800;
+     color: var(--primary-red);
+ }
+
+ #Features {
+     display: flex;
+ }
+
+ #Features li {
+     margin: 0 1rem;
+     list-style: none;
+ }
+
+ #Featuresli a {
+     display: inline-flex;
+     font-weight: 600;
+ }
+
+ /* .navlist li a.active {
+    background: var(--primary-red);
+    color: transparent;
+} */
+
+
+ /* ==================================
+           JUMBOTRON (About Hero Section)
+           ================================== */
+ .jumbotron {
+     background: linear-gradient(135deg, var(--primary-red), #ff6f9c);
+     color: var(--white);
+     padding: 100px 0;
+     margin-bottom: 40px;
+     text-align: center;
+ }
+
+.whatsapp-icon {
+    font-size: 24px;
+    color: var(--primary-green);
+    margin-left: 15px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+    color: #25D366;
+    background-color: #e0e0e0;
+}
+ .jumbotron h1 {
+     font-size: 4rem;
+     font-weight: 800;
+     margin-bottom: 20px;
+     line-height: 1.1;
+ }
+
+ .jumbotron p {
+     font-size: 1.2rem;
+     max-width: 800px;
+     margin: 0 auto 30px auto;
+     opacity: 0.9;
+ }
+
+ .jumbotron .btn-secondary-white {
+     background-color: transparent;
+     color: var(--white);
+     border: 2px solid var(--white);
+ }
+
+ .jumbotron .btn-secondary-white:hover {
+     background-color: var(--white);
+     color: var(--primary-red);
+ }
+
+ /* ==================================
+           MISSION & VISION
+           ================================== */
+ .mission-section {
+     display: flex;
+     gap: 40px;
+     align-items: center;
+ }
+
+ .mission-content {
+     flex: 1;
+ }
+
+ .mission-content h2 {
+     font-size: 2rem;
+     font-weight: 700;
+     color: var(--primary-red);
+     margin-bottom: 15px;
+ }
+
+ .mission-content p {
+     margin-bottom: 20px;
+     color: #555;
+ }
+
+ .mission-image-placeholder {
+     flex: 1;
+     min-height: 350px;
+     background-color: #eee;
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: 600;
+     color: #999;
+ }
+
+ /* ==================================
+           TEAM STATS (New Section)
+           ================================== */
+ .stats-section {
+     background-color: var(--light-gray);
+     padding: 80px 0;
+     margin: 40px 0;
+ }
+
+ .stats-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 30px;
+ }
+
+ .stat-item h3 {
+     font-size: 3rem;
+     font-weight: 800;
+     color: var(--primary-red);
+     margin-bottom: 5px;
+ }
+
+ .stat-item p {
+     font-size: 1.1rem;
+     font-weight: 600;
+     color: var(--dark-bg);
+ }
+
+ /* ==================================
+           OUR VALUES
+           ================================== */
+ .values-section h2 {
+     font-size: 2rem;
+     font-weight: 700;
+     margin-bottom: 40px;
+     color: var(--dark-bg);
+ }
+
+ .values-grid {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 30px;
+ }
+
+ .value-card {
+     padding: 25px;
+     border-radius: 10px;
+     background-color: var(--light-gray);
+     text-align: center;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .value-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+ }
+
+ .value-card i {
+     font-size: 2.5rem;
+     color: var(--primary-red);
+     margin-bottom: 15px;
+ }
+
+ .value-card h4 {
+     font-weight: 700;
+     margin-bottom: 10px;
+ }
+
+ .value-card p {
+     font-size: 0.9rem;
+     color: #777;
+ }
+
+ /* ==================================
+           FOOTER (Reused Styling)
+           ================================== */
+ footer {
+     background-color: #fff;
+     padding: 50px 0;
+     border-top: 1px solid #eee;
+     margin-top: 50px;
+ }
+
+ .footer-grid {
+     display: grid;
+     grid-template-columns: 2fr 1fr 1fr 2fr;
+     gap: 30px;
+ }
+
+ .footer-col h4 {
+     font-size: 1.2rem;
+     font-weight: 700;
+     margin-bottom: 20px;
+     color: var(--primary-red);
+ }
+
+ .footer-col ul {
+     list-style: none;
+ }
+
+ .footer-col ul li {
+     margin-bottom: 10px;
+ }
+
+ .footer-col ul li a:hover {
+     color: var(--primary-red);
+ }
+
+ .footer-col p {
+     font-size: 0.9rem;
+     color: #666;
+     margin-bottom: 15px;
+ }
+
+ .footer-col .social-icons a {
+     font-size: 1.2rem;
+     margin-right: 15px;
+     color: #555;
+ }
+
+ .footer-col .social-icons a:hover {
+     color: var(--primary-red);
+ }
+
+ .footer-col .visit-btn {
+     background-color: var(--primary-red);
+     color: var(--white);
+     padding: 8px 15px;
+     border-radius: 5px;
+     display: inline-block;
+     font-size: 0.85rem;
+ }
+
+ .footer-col .made-with {
+     font-size: 0.8rem;
+     margin-top: 10px;
+     color: #999;
+ }
+
+ /* ==================================
+           RESPONSIVENESS
+           ================================== */
+ @media (max-width: 992px) {
+     .jumbotron h1 {
+         font-size: 3rem;
+     }
+
+     .mission-section {
+         flex-direction: column;
+     }
+
+     .values-grid,
+     .stats-grid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+
+     .footer-grid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+ }
+
+ @media (max-width: 576px) {
+     .jumbotron h1 {
+         font-size: 2.5rem;
+     }
+
+     .values-grid,
+     .stats-grid {
+         grid-template-columns: 1fr;
+     }
+
+     .footer-grid {
+         grid-template-columns: 1fr;
+         text-align: center;
+     }
+ }

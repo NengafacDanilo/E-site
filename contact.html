@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ESHOP</title>
+    <!-- Using a common Google Font and Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #E91E63;
+            --primary-green: #4CAF50;
+            --primary-yellow: #FFC107;
+            --dark-bg: #212121;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 20px 0;
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            z-index: 1001;
+        }
+
+        #Features {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #Features li {
+            margin: 0 1rem;
+            list-style: none;
+            position: relative;
+        }
+
+        #Features li a {
+            display: inline-flex;
+            font-weight: 600;
+            align-items: center;
+            padding: 0.5rem;
+            transition: var(--transition);
+        }
+
+        #Features li a:hover {
+            color: var(--primary-red);
+        }
+
+        #Features li:last-child {
+            margin-left: auto;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .whatsapp-icon {
+            font-size: 24px;
+            color: var(--primary-green);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+            color: #25D366;
+            background-color: #e0e0e0;
+        }
+
+        .active {
+            color: var(--primary-red);
+        }
+
+        /* Mobile Navigation Styles */
+        @media screen and (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+                padding: 0.5rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--white);
+                padding: 80px 20px 20px;
+                transition: 0.3s ease-in-out;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            #Features {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #Features li {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+
+            #Features li a {
+                width: 100%;
+                padding: 0.8rem 0;
+            }
+
+            #Features li:last-child {
+                margin-left: 0;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--light-gray);
+            }
+
+            .whatsapp-icon {
+                margin-left: 0;
+                justify-content: flex-start;
+            }
+        }
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+         #Features {
+            display: flex;
+        }
+
+        #Features li {
+            margin: 0 1rem;
+            list-style: none;
+        }
+
+        #Featuresli a {
+            display: inline-flex;
+            font-weight: 600;
+        }
+
+        /* .navlist li a.active {
+    background: var(--primary-red);
+    color: transparent;
+} */
+
+.whatsapp-icon {
+    font-size: 24px;
+    color: var(--primary-green);
+    margin-left: 15px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+    color: #25D366;
+    background-color: #e0e0e0;
+}
+
+        /* Contact Section */
+        .contact-section {
+            padding: 60px 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+            background: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(233, 30, 99, 0.1);
+            border-radius: 10px;
+            z-index: 0;
+        }
+
+        .contact-info h2 {
+            position: relative;
+            z-index: 1;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: var(--primary-red);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            flex: 2;
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #d81b60;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-red);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .footer-col .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #555;
+            transition: color 0.3s;
+        }
+
+        .footer-col .social-icons a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col .visit-btn {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+
+        .footer-col .made-with {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ESHOP</div>
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-menu">
+                    <ul id="Features">
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/contact.html" class="active">Contact</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/add-to-card.html">Cart</a></li>
+                        <li><a href="https://wa.me/+1234567890" target="_blank" class="whatsapp-icon" aria-label="Chat on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 1. Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p>If you have any questions or concerns, feel free to reach out to us!</p>
+                <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Noida, Uttar Pradesh</span>
+                </div>
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <span>+91 1234567890</span>
+                </div>
+                <div>
+                    <i class="fas fa-envelope"></i>
+                    <span>support@eshop.com</span>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Get in Touch</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Footer -->
+    <footer>
+        <div class="container footer-grid">
+            
+            <div class="footer-col">
+                <h4>ESHOP</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maiores alias cum.</p>
+                <p class="made-with">Made with <i class="fas fa-heart" style="color: var(--primary-red);"></i> by The Coding Journey</p>
+                <a href="#" class="visit-btn">Visit our YouTube Channel</a>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Important Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Address</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Noida, Uttar Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 1234567890</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Navigation Toggle
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    // Toggle icon between bars and times
+                    const icon = navToggle.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navToggle.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        const icon = navToggle.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

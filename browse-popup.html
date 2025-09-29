@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - ESHOP</title>
+    <!-- Using a common Google Font and Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #E91E63;
+            --primary-green: #4CAF50;
+            --primary-yellow: #FFC107;
+            --dark-bg: #212121;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 20px 0;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            display: inline-block;
+            background: var(--light-gray);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-red);
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-view-details {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-view-details:hover {
+            background-color: #d81b60;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--primary-red);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Product Details Styles */
+        .product-details {
+            text-align: left;
+        }
+
+        .product-details h2 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+
+        .product-details p {
+            margin-bottom: 15px;
+        }
+
+        .product-details .btn-add-to-cart {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-details .btn-add-to-cart:hover {
+            background-color: #d81b60;
+        }
+
+        .product-image-modal {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-image-modal img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image-modal:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-red);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .footer-col .social-icons a {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            color: #555;
+        }
+
+        .footer-col .social-icons a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-col .visit-btn {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+
+        .footer-col .made-with {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%; /* Full width on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <h1 id="categoryTitle" class="product-title">Featured Products</h1>
+            <div id="productContainer"></div>
+        </div>
+    </section>
+
+    <!-- Modal for Product Details -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent" class="product-details">
+                <!-- Product details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product data for each category
+        const productData = {
+            Earphone: [
+                {
+                    name: "Premium Wireless Earbuds",
+                    price: 149.99,
+                    image: "images/earphone.jpg",
+                    description: "High-quality wireless earbuds with active noise cancellation, 24-hour battery life, and premium sound quality.",
+                    features: ["Active Noise Cancellation", "24-hour Battery Life", "Water Resistant", "Touch Controls"]
+                },
+                {
+                    name: "Sport Wireless Earphones",
+                    price: 99.99,
+                    image: "images/earphone.jpg",
+                    description: "Sweat-proof wireless earphones perfect for workouts and sports activities.",
+                    features: ["Sweat Resistant", "8-hour Battery Life", "Secure Fit", "Built-in Heart Rate Monitor"]
+                }
+            ],
+            Smartwatch: [
+                {
+                    name: "Smart Fitness Watch",
+                    price: 199.99,
+                    image: "images/smart watch.jpg",
+                    description: "Advanced fitness tracking with heart rate monitoring, GPS, and smartphone notifications.",
+                    features: ["Heart Rate Monitor", "GPS Tracking", "Water Resistant", "5-day Battery Life"]
+                },
+                {
+                    name: "Premium Smartwatch",
+                    price: 299.99,
+                    image: "images/smart watch.jpg",
+                    description: "Premium smartwatch with ECG monitoring, always-on display, and cellular connectivity.",
+                    features: ["ECG Monitor", "Always-on Display", "Cellular", "Fall Detection"]
+                }
+            ],
+            Laptop: [
+                {
+                    name: "Ultra-thin Laptop",
+                    price: 999.99,
+                    image: "images/laptop.png",
+                    description: "Ultra-thin laptop with powerful performance and all-day battery life.",
+                    features: ["Intel i7 Processor", "16GB RAM", "512GB SSD", "14-inch 4K Display"]
+                },
+                {
+                    name: "Gaming Laptop",
+                    price: 1499.99,
+                    image: "images/laptop.png",
+                    description: "High-performance gaming laptop with dedicated graphics and high refresh rate display.",
+                    features: ["RTX 3070", "32GB RAM", "1TB SSD", "17-inch 165Hz Display"]
+                }
+            ],
+            PS5: [
+                {
+                    name: "PS5 Digital Edition",
+                    price: 399.99,
+                    image: "images/psp 5.jpg",
+                    description: "Next-gen gaming console with lightning-fast loading and stunning graphics.",
+                    features: ["Digital Edition", "8K Support", "Ray Tracing", "3D Audio"]
+                },
+                {
+                    name: "PS5 Bundle",
+                    price: 559.99,
+                    image: "images/psp 5.jpg",
+                    description: "PS5 console bundle with additional controller and selected games.",
+                    features: ["Disc Edition", "Extra Controller", "2 Games", "PS Plus 3-months"]
+                }
+            ],
+            VR: [
+                {
+                    name: "Premium VR Headset",
+                    price: 499.99,
+                    image: "images/vr headset.jpg",
+                    description: "High-end VR headset with crystal clear display and precise motion tracking.",
+                    features: ["4K per Eye", "120Hz Refresh Rate", "Wireless", "Inside-out Tracking"]
+                },
+                {
+                    name: "VR Gaming Bundle",
+                    price: 699.99,
+                    image: "images/vr headset.jpg",
+                    description: "Complete VR gaming bundle with controllers and selected games.",
+                    features: ["Controllers Included", "Room-scale VR", "Built-in Audio", "Game Bundle"]
+                }
+            ],
+            Speaker: [
+                {
+                    name: "Smart Home Speaker",
+                    price: 199.99,
+                    image: "images/speaker bass.jpg",
+                    description: "Smart speaker with voice control and premium audio quality.",
+                    features: ["Voice Control", "Multi-room Audio", "Wi-Fi & Bluetooth", "360° Sound"]
+                },
+                {
+                    name: "Portable Smart Speaker",
+                    price: 149.99,
+                    image: "images/speaker bass.jpg",
+                    description: "Portable smart speaker with waterproof design and long battery life.",
+                    features: ["12-hour Battery", "Waterproof", "Voice Assistant", "Party Mode"]
+                }
+            ]
+        };
+
+        // Get the category from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+
+        // Set the category title
+        const categoryTitle = document.getElementById('categoryTitle');
+        categoryTitle.textContent = category ? `${category} Products` : 'Featured Products';
+
+        // Get the product container
+        const productContainer = document.getElementById('productContainer');
+
+        // Display products for the selected category
+        if (category && productData[category]) {
+            productData[category].forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">${product.image || 'Image Coming Soon'}</div>
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">$${product.price}</div>
+                    <button class="btn-view-details" onclick="openModal(${index})">View Details</button>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        // Function to open modal with specific product details
+        function openModal(index) {
+            const modal = document.getElementById('productModal');
+            const modalContent = document.getElementById('modalContent');
+            const product = productData[category][index];
+
+            modalContent.innerHTML = `
+                <h2>${product.name}</h2>
+                <div class="product-image-modal">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <p><strong>Price:</strong> $${product.price}</p>
+                <p>${product.description}</p>
+                <div style="margin: 20px 0;">
+                    <h3>Key Features:</h3>
+                    <ul style="list-style: none; margin-top: 10px;">
+                        ${product.features.map(feature => `<li><i class="fas fa-check" style="color: #4CAF50; margin-right: 10px;"></i>${feature}</li>`).join('')}
+                    </ul>
+                </div>
+                <button class="btn-add-to-cart" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+            `;
+
+            modal.style.display = "block";
+        }
+
+        // Function to close modal
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Function to handle adding items to cart
+        function addToCart(name, price) {
+            // Get existing cart items or initialize empty array
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            // Create new item object
+            const newItem = {
+                id: Date.now(), // Unique ID for each item
+                name: name,
+                price: price,
+                quantity: 1,
+                category: category,
+                image: productData[category].find(p => p.name === name)?.image || 'default-image.jpg'
+            };
+
+            // Check if item already exists in cart
+            const existingItemIndex = cartItems.findIndex(item => item.name === name);
+            
+            if (existingItemIndex > -1) {
+                // If item exists, increase quantity
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                // If item doesn't exist, add new item
+                cartItems.push(newItem);
+            }
+
+            // Save updated cart to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #4CAF50;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                z-index: 2000;
+                animation: slideIn 0.5s ease-out;
+            `;
+            successMsg.textContent = `Added ${name} to cart`;
+            document.body.appendChild(successMsg);
+
+            // Remove success message after 2 seconds
+            setTimeout(() => {
+                successMsg.style.animation = 'slideOut 0.5s ease-out';
+                setTimeout(() => successMsg.remove(), 500);
+            }, 2000);
+
+            // Update cart icon if it exists
+            const cartCountSpan = parent.document.querySelector('.cart-count');
+            if (cartCountSpan) {
+                const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                cartCountSpan.textContent = totalItems;
+            }
+        }
+    </script>
+
+</body>
+</html>
