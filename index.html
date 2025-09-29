@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shop Gadget Store</title>
+    <!-- Using a common Google Font and Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+   <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ESHOP</div>
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="nav-menu">
+                    <ul id="Features">
+                        <li><a href="/index.html" class="active">Home</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/add-to-card.html">Cart</a></li>
+                        <li><a href="https://wa.me/+1234567890" target="_blank" class="whatsapp-icon" aria-label="Chat on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 1. Hero Section (Banner 1) -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <p>Beats Solo</p>
+            <h1><span>Wireless</span> HEAD PHONE</h1>
+            <a href="#" class="btn btn-primary">Shop By Category</a>
+        </div>
+        <div class="hero-image-placeholder">
+            <div class="headphone-visual">
+                <img src="images/head phone.jpg" alt="Wireless Headphone" />
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Category Grid -->
+    <section class="category-section">
+        <div class="container category-grid">
+            
+            <div class="category-card card-1 transition-element" data-category="Earphone">
+                <p>Enjoy With</p>
+                <h3>Earphone</h3>
+                <a href="#" class="btn btn-browse">Browse</a>
+                <div class="card-image">
+                    <img src="images/earphone.jpg" alt="Earphone" />
+                </div>
+            </div>
+
+            <div class="category-card card-2 transition-element" data-category="Smartwatch">
+                <p>Enjoy With</p>
+                <h3>Gadget</h3>
+                <a href="#" class="btn btn-browse">Browse</a>
+                <div class="card-image">
+                    <img src="images/smart watch.jpg" alt="Smart Watch" />
+                </div>
+            </div>
+
+            <div class="category-card card-3 transition-element" data-category="Laptop">
+                <p>Enjoy With</p>
+                <h3>Laptop</h3>
+                <a href="#" class="btn btn-browse">Browse</a>
+                <div class="card-image">
+                    <img src="images/laptop.png" alt="Laptop" />
+                </div>
+            </div>
+            
+            <div class="category-card card-4 transition-element" data-category="PS5">
+                <p>Enjoy With</p>
+                <h3>Gaming Console</h3>
+                <a href="#" class="btn btn-browse">Browse</a>
+                <div class="card-image">
+                    <img src="images/psp 5.jpg" alt="PS5 Gaming Console" />
+                </div>
+            </div>
+            
+            <div class="category-card card-5 transition-element" data-category="VR">
+                <p>Enjoy With</p>
+                <h3>VR Gear</h3>
+                <a href="#" class="btn btn-browse">Browse</a>
+                <div class="card-image">
+                    <img src="images/vr headset.jpg" alt="VR Headset" />
+                </div>
+            </div>
+            
+            <div class="category-card card-6 transition-element" data-category="Speaker">
+                <p>Enjoy With</p>
+                <h3>Smart Speaker</h3>
+                <a href="#" class="btn btn-browse">Browse</a>
+                <div class="card-image">
+                    <img src="images/speaker bass.jpg" alt="Smart Speaker" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- Product Popup -->
+    <div id="productPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000;">
+        <div style="position: relative; width: 90%; max-width: 800px; margin: 50px auto; background: white; padding: 20px; border-radius: 10px; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closePopup()" style="position: absolute; right: 20px; top: 20px; background: none; border: none; font-size: 24px; cursor: pointer;">×</button>
+            <iframe id="popupFrame" src="" style="width: 100%; height: 80vh; border: none;"></iframe>
+        </div>
+    </div>
+    
+    
+    <!-- 3. Value Propositions/Features -->
+    <section class="value-props transition-element">
+        <div class="container props-grid">
+            <div class="prop-item">
+                <i class="fas fa-truck"></i>
+                <h4>Free Shipping</h4>
+                <p>Free Shipping On All Order</p>
+            </div>
+            <div class="prop-item">
+                <i class="fas fa-wallet"></i>
+                <h4>Safe Money</h4>
+                <p>30 Days Money Back</p>
+            </div>
+            <div class="prop-item">
+                <i class="fas fa-credit-card"></i>
+                <h4>Secure Payment</h4>
+                <p>All Payment Secure</p>
+            </div>
+            <div class="prop-item">
+                <i class="fas fa-headset"></i>
+                <h4>Online Support 24/7</h4>
+                <p>Technical Support 24/7</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Promotion Banner 2 (Red - Fine Smile) -->
+    <section class="container">
+        <div class="promo-banner-red transition-element">
+            <div class="promo-content-left">
+                <small>30% OFF</small>
+                <h2>FINE SMILE</h2>
+                <p>10 Jan to 28 Jan</p>
+            </div>
+            
+            <div class="promo-image-center">
+                <!-- Headphone Image -->
+                <img src="images/ChatGPT Image Sep 29, 2025, 08_31_27 PM.png" alt="Headphone" />
+            </div>
+            
+            <div class="promo-content-right">
+                <h3>Air Solo Bass</h3>
+                <h4>Winter Sale</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque reiciendis</p>
+                <a href="#" class="btn btn-secondary">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Product Grid -->
+    <section class="container">
+        <div class="section-heading transition-element">
+            <h2>Our Products</h2>
+            <p>Explore Our Products</p>
+        </div>
+        
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759034854953.jpg" alt="Boat Headphone" />
+                </div>
+                <h4>Boat Headphone</h4>
+                <p>$120</p>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759169985420.jpg" alt="Rocky Mountain" />
+                </div>
+                <h4>Rocky Mountain</h4>
+                <p>$420</p>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759170063923.jpg" alt="Goggles" />
+                </div>
+                <h4>Goggles</h4>
+                <p>$320</p>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759170242396.jpg" alt="Printed Headset" />
+                </div>
+                <h4>Printed</h4>
+                <p>$220</p>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759170468133.jpg" alt="Boat Headphone" />
+                </div>
+                <h4>Boat Headphone</h4>
+                <p>$120</p>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759170549630.jpg" alt="Rocky Mountain" />
+                </div>
+                <h4>Rocky Mountain</h4>
+                <p>$420</p>
+            </div>
+            <!-- Product 7 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759170634832.jpg" alt="Goggles" />
+                </div>
+                <h4>Goggles</h4>
+                <p>$320</p>
+            </div>
+            <!-- Product 8 -->
+            <div class="product-item transition-element">
+                <div class="product-image-box">
+                    <img src="images/1759170722093.jpg" alt="Printed Headset" />
+                </div>
+                <h4>Printed</h4>
+                <p>$220</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Promotion Banner 3 (Green - Happy Hours) -->
+    <section class="container">
+        <div class="promo-banner-green transition-element">
+            <div class="promo-content-left">
+                <small>30% OFF</small>
+                <h2>HAPPY HOURS</h2>
+                <p>14 Jan to 28 Jan</p>
+            </div>
+            
+            <div class="promo-image-center">
+                <!-- Smartwatch Image -->
+                 <img src="/images/1759175689998.jpg" alt="Smartwatch">
+            </div>
+            
+            <div class="promo-content-right">
+                <h3>Smart Solo</h3>
+                <h4>Winter Sale</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque reiciendis</p>
+                <a href="#" class="btn btn-secondary">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 7. Recent News / Blog -->
+    <section class="container">
+        <div class="section-heading transition-element">
+            <h2>Recent News</h2>
+            <p>Explore Our Blogs</p>
+        </div>
+        
+        <div class="news-grid">
+            
+            <div class="news-card transition-element">
+                <div class="news-image">
+                    <img src="images/1759170836707.jpg" alt="Smartwatch Blog" />
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">Jan 20, 2024 by Dilshad</div>
+                    <h4>How to choose perfect smartwatch</h4>
+                    <p>minima facere deserunt vero illo beatae deleniti eos dolores, consequuntur, eligendi corporis maiores molestias laudantium. Porro?</p>
+                </div>
+            </div>
+            
+            <div class="news-card transition-element">
+                <div class="news-image">
+                    <img src="images/1759170982793.jpg" alt="Gadget Blog" />
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">Jan 20, 2024 by Satya</div>
+                    <h4>How to choose perfect gadget</h4>
+                    <p>minima facere deserunt vero illo beatae deleniti eos dolores, consequuntur, eligendi corporis maiores molestias laudantium. Porro?</p>
+                </div>
+            </div>
+            
+            <div class="news-card transition-element">
+                <div class="news-image">
+                    <img src="images/1759170794989.jpg" alt="VR Headset Blog" />
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">Jan 20, 2024 by Sabir</div>
+                    <h4>How to choose perfect VR headset</h4>
+                    <p>minima facere deserunt vero illo beatae deleniti eos dolores, consequuntur, eligendi corporis maiores molestias laudantium. Porro?</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- 8. Brand Logos -->
+    <section class="brand-logos transition-element">
+        <div class="container logo-grid">
+            <div class="brand-logo">GOLDEN</div>
+            <div class="brand-logo">JR</div>
+            <div class="brand-logo">SWEETY</div>
+            <div class="brand-logo">MIGHTY</div>
+            <div class="brand-logo">FASTLANE</div>
+        </div>
+    </section>
+
+    <!-- 9. Footer -->
+    <footer>
+        <div class="container footer-grid">
+            
+            <div class="footer-col">
+                <h4>ESHOP</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maiores alias cum.</p>
+                <p class="made-with">Made with <i class="fas fa-heart" style="color: var(--primary-red);"></i> by The Coding Journey</p>
+                <a href="#" class="visit-btn">Visit our YouTube Channel</a>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Important Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Address</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Noida, Uttar Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 1234567890</p>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script src="/app.js"></script>
+    <script>
+        // Get all browse buttons
+        const browseButtons = document.querySelectorAll('.btn-browse');
+        
+        // Add click event listener to each button
+        browseButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = button.closest('.category-card').getAttribute('data-category');
+                showPopup(category);
+            });
+        });
+
+        // Function to show the popup
+        function showPopup(category) {
+            const popup = document.getElementById('productPopup');
+            const frame = document.getElementById('popupFrame');
+            
+            // Set the iframe source
+            frame.src = `browse-popup.html?category=${category}`;
+            
+            // Show the popup
+            popup.style.display = 'block';
+            
+            // Prevent body scrolling when popup is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            const popup = document.getElementById('productPopup');
+            const frame = document.getElementById('popupFrame');
+            
+            // Clear the iframe source
+            frame.src = '';
+            
+            // Hide the popup
+            popup.style.display = 'none';
+            
+            // Re-enable body scrolling
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('productPopup').addEventListener('click', (e) => {
+            if (e.target.id === 'productPopup') {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
